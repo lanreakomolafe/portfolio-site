@@ -49,7 +49,7 @@ Follow these steps in order to deploy your portfolio website.
   - **Region:** Same as database
   - **Branch:** `main`
   - **Root Directory:** `backend` ⚠️ **IMPORTANT**
-  - **Build Command:** `pip install -r requirements.txt`
+  - **Build Command:** `pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt`
   - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - [ ] Click **"Create Web Service"**
 

@@ -31,8 +31,13 @@ This guide covers deploying the portfolio website to production.
 1. **Create Web Service**
    - Connect your repository
    - Select the `backend` directory as root
-   - Build Command: `pip install -r requirements.txt`
+   - Build Command: `pip install --upgrade pip && pip install -r requirements.txt`
    - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   
+   **Note:** If you encounter `maturin` or Rust build errors, use this build command instead:
+   ```
+   pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt
+   ```
 
 2. **Environment Variables**
    - `DATABASE_URL`: Your PostgreSQL connection string
@@ -91,3 +96,12 @@ CREATE INDEX IF NOT EXISTS idx_subscribers_submitted_at ON subscribers(submitted
 ### Font Issues
 - Switzer font is commercial - self-host if you have a license
 - Inter font is used as fallback (already configured)
+
+### Build Errors (maturin/Rust)
+If you see errors like "Read-only file system" or "maturin failed":
+1. Update the Build Command in Render to:
+   ```
+   pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt
+   ```
+2. This forces pip to use pre-built binary wheels instead of building from source
+3. If that doesn't work, try pinning Python version in Render settings to Python 3.11

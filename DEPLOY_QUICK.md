@@ -11,7 +11,7 @@
 - New → Web Service
 - Repo: `lanreakomolafe/portfolio-site`
 - **Root Directory:** `backend` ⚠️
-- **Build:** `pip install -r requirements.txt`
+- **Build:** `pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt`
 - **Start:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
 **Environment Variables:**
