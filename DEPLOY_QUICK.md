@@ -11,7 +11,8 @@
 - New → Web Service
 - Repo: `lanreakomolafe/portfolio-site`
 - **Root Directory:** `backend` ⚠️
-- **Build:** `pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt`
+- **Python Version:** Set to `3.11.11` in Render settings (Environment → PYTHON_VERSION)
+- **Build:** `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
 - **Start:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
 **Environment Variables:**
@@ -47,5 +48,5 @@ See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for detailed steps.
 
 ## 🔗 Your URLs
 - GitHub: `https://github.com/lanreakomolafe/portfolio-site.git`
-- Frontend: `_________________` (after Vercel deploy)
-- Backend: `_________________` (after Render deploy)
+- Frontend: `https://portfolio-site-pi-taupe.vercel.app` (after Vercel deploy)
+- Backend: `https://portfolio-site-018y.onrender.com` (after Render deploy)

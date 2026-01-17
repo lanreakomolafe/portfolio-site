@@ -99,9 +99,19 @@ CREATE INDEX IF NOT EXISTS idx_subscribers_submitted_at ON subscribers(submitted
 
 ### Build Errors (maturin/Rust)
 If you see errors like "Read-only file system" or "maturin failed":
-1. Update the Build Command in Render to:
+
+**Root Cause:** Render defaults to Python 3.13, but many packages (like `pydantic-core`) don't have pre-built wheels for 3.13 yet, causing builds from source.
+
+**Solution:**
+1. **Set Python Version to 3.11** (has wheels for all dependencies):
+   - In Render dashboard: Settings → Environment → Add Environment Variable
+   - Key: `PYTHON_VERSION`
+   - Value: `3.11.11`
+   - OR create a `.python-version` file in your repo root with `3.11.11`
+   
+2. **Update Build Command** (if not using render.yaml):
    ```
-   pip install --upgrade pip setuptools wheel && pip install --only-binary :all: -r requirements.txt || pip install -r requirements.txt
+   pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
    ```
-2. This forces pip to use pre-built binary wheels instead of building from source
-3. If that doesn't work, try pinning Python version in Render settings to Python 3.11
+
+3. **Redeploy** - The `.python-version` file in the repo will automatically set Python 3.11
